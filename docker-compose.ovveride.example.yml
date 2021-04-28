@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+  app:
+    build:
+      target: dev
+      args:
+        UNAME: # echo $(whoami)
+        UID: # echo $(id -u)
+    volumes:
+      - .:/var/www/app
+      -  ./docker/app/php-dev.ini:/usr/local/etc/php/conf.d/custom.ini
+  nginx:
+    build:
+      target: dev
+    volumes:
+      - ./docker/nginx/templates/dev.template:/etc/nginx/templates/default.conf.template
+      - ./public/:/var/www/app/public/
+    ports:
+    - 8080:80
+    environment:
+      APP_NAME: app
+      VIRTUAL_HOST: sk.test

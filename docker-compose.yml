@@ -1,0 +1,10 @@
+version: "3.7"
+services:
+  app:
+    image: sk/app
+    build:
+      context: ./docker/app
+  nginx:
+    image: sk/nginx
+    build:
+      context: ./docker/nginx

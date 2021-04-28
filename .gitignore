@@ -12,3 +12,19 @@
 ###> docker ###
 docker-compose.override.yml
 ###< docker ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
+
+###> symfony/phpunit-bridge ###
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+###> php-cs-fixer ###
+.php_cs.cache
+.php_cs
+###< php-cs-fixer ###

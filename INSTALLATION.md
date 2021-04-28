@@ -9,3 +9,12 @@
 5) Up the docker-compose: <br>
 `docker-compose up -d --build`
 6) Go to `http://127.0.0.1:8080`
+
+#### CS FIXER INSTALLATION
+1) `cd tools/php-cs-fixer`
+2) `composer install`
+3) Use it inside a docker container: `./bin/csfixer ...`
+
+#### TESTS RUNNING
+`./bin/dphpunit` for running tests inside a docker container <br>
+`./bin/phpunit` for running locally

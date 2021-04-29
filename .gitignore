@@ -27,5 +27,4 @@ docker-compose.override.yml
 ###> php-cs-fixer ###
 .php_cs.cache
 .php_cs
-./tools/php-cs-fixer/vendor/
 ###< php-cs-fixer ###

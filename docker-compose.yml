@@ -8,3 +8,7 @@ services:
     image: sk/nginx
     build:
       context: ./docker/nginx
+  pg:
+    image: postgres:13
+    volumes:
+      - /opt/pg/sk_data:/var/lib/postgresql/data

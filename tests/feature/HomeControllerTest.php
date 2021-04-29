@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Tests;
+namespace App\Tests\Feature;
 
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class HomeTest extends WebTestCase
+class HomeControllerTest extends WebTestCase
 {
-    public function testSomething(): void
+    public function testHomePageRunsCorrectly(): void
     {
         /** @var KernelBrowser $client */
         $client = static::createClient();

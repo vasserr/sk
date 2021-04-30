@@ -2,14 +2,12 @@
 
 namespace App\Tests\Feature;
 
-use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class HomeControllerTest extends WebTestCase
 {
     public function testHomePageRunsCorrectly(): void
     {
-        /** @var KernelBrowser $client */
         $client = static::createClient();
         $client->request('GET', '/');
         $this->assertResponseHeaderSame('Content-Type', 'application/json');

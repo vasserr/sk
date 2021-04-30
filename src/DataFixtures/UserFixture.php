@@ -16,12 +16,6 @@ class UserFixture extends Fixture
 
     protected UserPasswordEncoderInterface $userPasswordEncoder;
 
-    #[Required]
-    public function setEncoder(UserPasswordEncoderInterface $userPasswordEncoder)
-    {
-        $this->userPasswordEncoder = $userPasswordEncoder;
-    }
-
     public function load(ObjectManager $manager)
     {
         $user = new User();
@@ -32,5 +26,11 @@ class UserFixture extends Fixture
         $user->setRoles(['ROLE_USER']);
         $manager->persist($user);
         $manager->flush();
+    }
+
+    #[Required]
+    public function setEncoder(UserPasswordEncoderInterface $userPasswordEncoder)
+    {
+        $this->userPasswordEncoder = $userPasswordEncoder;
     }
 }

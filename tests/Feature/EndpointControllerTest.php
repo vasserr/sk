@@ -15,7 +15,7 @@ class EndpointControllerTest extends WebTestCase
         $this->assertResponseStatusCodeSame(401);
     }
 
-    public function testForAuthorizedUser(): void
+    public function testSuccessfulCreating(): void
     {
         $client = static::createClient([], [
             'HTTP_X_AUTH_TOKEN' => 'apiTokenForTest',
@@ -31,6 +31,7 @@ class EndpointControllerTest extends WebTestCase
         $project = $projectRepository->findOneBy(['name' => 'projectForTest']);
 
         $client->request('POST', "api/endpoint/create/{$project->getId()}", [
+            'path' => 'path123',
             'body' => [],
             'status' => 401,
         ]);

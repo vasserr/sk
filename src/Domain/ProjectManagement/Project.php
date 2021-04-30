@@ -5,7 +5,7 @@ namespace App\Domain\ProjectManagement;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=ProjectRepository::class)
  * @ORM\Table(name="`projects`")
  */
 class Project
@@ -18,7 +18,7 @@ class Project
     protected int $id;
 
     /**
-     * @ORM\Column(type="string", nullable=false)
+     * @ORM\Column(type="string", nullable=false, unique=true)
      */
     protected string $name;
 

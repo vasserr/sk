@@ -1,12 +1,12 @@
 security:
     enable_authenticator_manager: true
     encoders:
-        App\Entity\User:
+        App\Presentation\Security\User:
             algorithm: auto
     providers:
         app_user_provider:
             entity:
-                class: App\Entity\User
+                class: App\Presentation\Security\User
                 property: apiToken
     firewalls:
         dev:
@@ -17,7 +17,7 @@ security:
             provider: app_user_provider
             stateless: true
             custom_authenticators:
-                - App\Security\ApiKeyAuthenticator
+                - App\Presentation\Security\ApiKeyAuthenticator
     access_control:
          - { path: ^/api, roles: ROLE_USER }
          - { path: ^/profile, roles: ROLE_USER }

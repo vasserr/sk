@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Entity;
+namespace App\Presentation\Security;
 
-use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @ORM\Table(name="`user`")
+ * @ORM\Table(name="`users`")
  */
 class User implements UserInterface
 {
@@ -17,23 +16,23 @@ class User implements UserInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    protected $id;
+    protected int $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
-    protected $username;
+    protected string $username;
 
     /**
      * @ORM\Column(type="json")
      */
-    protected $roles = [];
+    protected array $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
-    protected $password;
+    protected string $password;
 
     /**
      * @ORM\Column(type="string", unique=true)

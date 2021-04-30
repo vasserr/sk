@@ -1,14 +1,15 @@
 <?php
 
-namespace App\DataFixtures;
+namespace App\Fixtures;
 
-use App\Entity\User;
+use App\Presentation\Security\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Contracts\Service\Attribute\Required;
 
-class UserFixture extends Fixture
+class UserFixture extends Fixture implements OrderedFixtureInterface
 {
     public const TEST_USERNAME = 'userForTest';
     public const TEST_PASSWORD = '123456';
@@ -26,11 +27,17 @@ class UserFixture extends Fixture
         $user->setRoles(['ROLE_USER']);
         $manager->persist($user);
         $manager->flush();
+        $this->setReference(self::TEST_USERNAME, $user);
     }
 
     #[Required]
     public function setEncoder(UserPasswordEncoderInterface $userPasswordEncoder)
     {
         $this->userPasswordEncoder = $userPasswordEncoder;
+    }
+
+    public function getOrder(): int
+    {
+        return 10;
     }
 }

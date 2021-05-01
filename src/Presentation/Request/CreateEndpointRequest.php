@@ -2,7 +2,6 @@
 
 namespace App\Presentation\Request;
 
-use App\Presentation\Dto\RequestDtoInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -10,15 +9,14 @@ class CreateEndpointRequest implements RequestDtoInterface
 {
     /**
      * @Assert\NotBlank()
-     * @Assert\Unique()
      */
-    protected string $path;
+    protected ?string $path;
     /**
      * @Assert\NotNull()
      * @Assert\GreaterThanOrEqual(100)
      * @Assert\LessThan(600)
      */
-    protected int $responseCode;
+    protected ?int $responseCode;
 
     /**
      * @Assert\Json()
@@ -35,5 +33,15 @@ class CreateEndpointRequest implements RequestDtoInterface
     public function getPath(): string
     {
         return $this->path;
+    }
+
+    public function getResponseCode(): mixed
+    {
+        return $this->responseCode;
+    }
+
+    public function getResponseBody(): mixed
+    {
+        return $this->responseBody;
     }
 }

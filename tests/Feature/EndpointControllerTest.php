@@ -8,10 +8,10 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class EndpointControllerTest extends WebTestCase
 {
-    public function testForUnauthorizedUser(): void
+    public function testCreateForUnauthorizedUser(): void
     {
         $client = $this->createClient();
-        $client->request('POST', 'api/endpoint/create/11');
+        $client->request('POST', 'api/endpoint/projectForTest/new');
         $this->assertResponseStatusCodeSame(401);
     }
 
@@ -24,23 +24,17 @@ class EndpointControllerTest extends WebTestCase
             'ACCEPT' => 'application/json',
         ]);
 
-        $container = self::$container;
-        /** @var ProjectRepository $projectRepository */
-        $projectRepository = $container->get(ProjectRepository::class);
-        /** @var Project $project */
-        $project = $projectRepository->findOneBy(['name' => 'projectForTest']);
-
-        $client->request('POST', "api/endpoint/create/{$project->getId()}", [
-            'path' => 'path123',
-            'body' => [],
-            'status' => 401,
+        $client->request('POST', "api/endpoint/projectForTest/new", [
+            'path' => 'fooPath',
+            'responseBody' => json_encode(['success' => false]),
+            'responseCode' => 401,
         ]);
 
         $this->assertResponseIsSuccessful();
         $this->assertJson(
             $client->getResponse()->getContent(),
             json_encode([
-                'project' => 'projectForTest',
+                'url' => 'http://localhost/projectForTest/fooPath',
             ])
         );
     }

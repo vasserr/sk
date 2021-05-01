@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Presentation\Dto;
+namespace App\Presentation\Request;
 
 use Symfony\Component\HttpFoundation\Request;
 

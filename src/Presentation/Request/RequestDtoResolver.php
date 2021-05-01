@@ -1,31 +1,33 @@
 <?php
 
-namespace App\Presentation\Dto;
+namespace App\Presentation\Request;
 
+use App\Supply\Traits\LoggerTrait;
+use App\Supply\Traits\ValidatorTrait;
 use Generator;
 use ReflectionClass;
+use ReflectionException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ArgumentValueResolverInterface;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Symfony\Contracts\Service\Attribute\Required;
 
 class RequestDtoResolver implements ArgumentValueResolverInterface
 {
-    protected ValidatorInterface $validator;
-
-    #[Required]
-    public function setValidator(ValidatorInterface $validator): void
-    {
-        $this->validator = $validator;
-    }
+    use ValidatorTrait;
+    use LoggerTrait;
 
     public function supports(Request $request, ArgumentMetadata $argument): bool
     {
-        $reflection = new ReflectionClass($argument->getType());
-        if ($reflection->implementsInterface(RequestDTOInterface::class)) {
-            return true;
+        try {
+            $reflection = new ReflectionClass($argument->getType());
+
+            return $reflection->implementsInterface(RequestDtoInterface::class);
+        } catch (ReflectionException $e) {
+            $this->logger->error('Request DTO resolver error', [
+                'exception' => $e,
+                'class' => $argument->getType(),
+            ]);
         }
 
         return false;

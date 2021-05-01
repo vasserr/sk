@@ -17,7 +17,7 @@ use Doctrine\ORM\Mapping\UniqueConstraint;
 class Endpoint
 {
     public const STATE_ACTIVE = 'active';
-    public const STATE_REMOVED = 'removed';
+    public const STATE_PAUSED = 'paused';
 
     /**
      * @ORM\Id

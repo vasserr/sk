@@ -21,7 +21,9 @@ final class Version20210430064353 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE SEQUENCE "endpoints_id_seq" INCREMENT BY 1 MINVALUE 1 START 1');
-        $this->addSql('CREATE TABLE "endpoints" (id INT NOT NULL, project_id INT DEFAULT NULL, path VARCHAR(255) NOT NULL, response_code INT NOT NULL, response_body JSON NOT NULL, state VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE "endpoints" (id INT NOT NULL, project_id INT DEFAULT NULL,'
+            . ' path VARCHAR(255) NOT NULL, response_code INT NOT NULL, response_body VARCHAR(255) NOT NULL,'
+            . ' state VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_DC1D25B0166D1F9C ON "endpoints" (project_id)');
         $this->addSql('ALTER TABLE "endpoints" ADD CONSTRAINT FK_DC1D25B0166D1F9C FOREIGN KEY (project_id) REFERENCES "projects" (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
     }

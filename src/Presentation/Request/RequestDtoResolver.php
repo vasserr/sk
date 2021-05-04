@@ -38,7 +38,8 @@ class RequestDtoResolver implements ArgumentValueResolverInterface
         $class = $argument->getType();
         $dto = new $class($request);
         $errors = $this->validator->validate($dto);
-        if (count($errors) > 0) {
+
+        if ($errors->count() > 0) {
             throw new BadRequestHttpException((string) $errors);
         }
 

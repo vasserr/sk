@@ -7,6 +7,7 @@ use App\Domain\ProjectManagement\Project;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\Serializer\Encoder\JsonEncode;
 
 class EndpointFixture extends Fixture implements OrderedFixtureInterface
 {
@@ -18,7 +19,7 @@ class EndpointFixture extends Fixture implements OrderedFixtureInterface
         $project = $this->getReference(ProjectFixture::TEST_PROJECT_NAME);
         $endpoint->setProject($project);
         $endpoint->setResponseCode(401);
-        $endpoint->setResponseBody([]);
+        $endpoint->setResponseBody(json_encode(['error' => 'Not authorized']));
 
         $manager->persist($endpoint);
         $manager->flush();

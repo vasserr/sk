@@ -26,6 +26,11 @@ class Endpoint
      */
     protected int $id;
     /**
+     * @ORM\ManyToOne(targetEntity="App\Domain\ProjectManagement\Project")
+     * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
+     */
+    protected Project $project;
+    /**
      * @ORM\Column(type="string", nullable=false)
      */
     protected string $path;
@@ -34,14 +39,9 @@ class Endpoint
      */
     protected int $responseCode;
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="string", nullable=true)
      */
-    protected array $responseBody = [];
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Domain\ProjectManagement\Project")
-     * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
-     */
-    protected Project $project;
+    protected ?string $responseBody;
     /**
      * @ORM\Column(type="string", nullable=false)
      */
@@ -72,12 +72,12 @@ class Endpoint
         $this->responseCode = $responseCode;
     }
 
-    public function getResponseBody(): array
+    public function getResponseBody(): ?string
     {
         return $this->responseBody;
     }
 
-    public function setResponseBody(array $responseBody): void
+    public function setResponseBody(string $responseBody): void
     {
         $this->responseBody = $responseBody;
     }

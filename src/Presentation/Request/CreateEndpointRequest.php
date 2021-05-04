@@ -8,7 +8,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class CreateEndpointRequest implements RequestDtoInterface
 {
     /**
-     * @Assert\NotBlank()
+     * @Assert\NotNull
+     * @Assert\NotBlank
      */
     protected ?string $path;
     /**
@@ -18,9 +19,6 @@ class CreateEndpointRequest implements RequestDtoInterface
      */
     protected ?int $responseCode;
 
-    /**
-     * @Assert\Json()
-     */
     protected ?string $responseBody;
 
     public function __construct(Request $request)
@@ -30,17 +28,17 @@ class CreateEndpointRequest implements RequestDtoInterface
         $this->responseBody = $request->get('responseBody');
     }
 
-    public function getPath(): string
+    public function getPath(): ?string
     {
         return $this->path;
     }
 
-    public function getResponseCode(): mixed
+    public function getResponseCode(): ?int
     {
         return $this->responseCode;
     }
 
-    public function getResponseBody(): mixed
+    public function getResponseBody(): ?string
     {
         return $this->responseBody;
     }

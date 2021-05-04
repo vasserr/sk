@@ -15,7 +15,7 @@ class EndpointManager implements EndpointManagerInterface
         $endpoint->setProject($project);
         $endpoint->setPath($path);
         $endpoint->setResponseCode($responseCode);
-        $endpoint->setResponseBody((array) json_decode($responseBody));
+        $endpoint->setResponseBody($responseBody);
         $this->save($endpoint);
 
         return $endpoint;

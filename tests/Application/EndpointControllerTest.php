@@ -1,9 +1,7 @@
 <?php
 
-namespace App\Tests\Feature;
+namespace App\Tests\Application;
 
-use App\Domain\ProjectManagement\Project;
-use App\Domain\ProjectManagement\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class EndpointControllerTest extends WebTestCase
@@ -24,7 +22,7 @@ class EndpointControllerTest extends WebTestCase
             'ACCEPT' => 'application/json',
         ]);
 
-        $client->request('POST', "api/endpoint/projectForTest/new", [
+        $client->request('POST', 'api/endpoint/projectForTest/new', [
             'path' => 'fooPath',
             'responseBody' => json_encode(['success' => false]),
             'responseCode' => 401,

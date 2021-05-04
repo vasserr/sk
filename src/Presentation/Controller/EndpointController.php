@@ -37,7 +37,7 @@ class EndpointController extends AbstractController
 
             return new JsonResponse(['url' => $this->generateUrl('using', [
                     'path' => $endpoint->getPath(),
-                    'project' => $endpoint->getProject()->getName(),
+                    'projectName' => $endpoint->getProject()->getName(),
                 ]),
             ]);
         } catch (Throwable $exception) {
@@ -47,6 +47,6 @@ class EndpointController extends AbstractController
             ]);
         }
 
-        return new JsonResponse([], Response::HTTP_INTERNAL_SERVER_ERROR);
+        return new JsonResponse([], Response::HTTP_INTERNAL_SERVER_ERROR); //TODO Obfuscate it error
     }
 }

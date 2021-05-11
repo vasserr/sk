@@ -18,4 +18,6 @@
 2) Use it inside a docker container: `./bin/csfixer ...`
 
 #### TESTS RUNNING
-er
+1. Create a test database: `./bin/dconsole d:d:c --env=test`
+2. Run migrations for the test db: `./bin/dconsole d:m:m --env=test`
+3. Load fixtures: `./bin/dconsole d:f:l --env=test`

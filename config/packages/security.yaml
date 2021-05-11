@@ -20,4 +20,3 @@ security:
                 - App\Presentation\Security\ApiKeyAuthenticator
     access_control:
          - { path: ^/api, roles: ROLE_USER }
-         - { path: ^/profile, roles: ROLE_USER }

@@ -3,7 +3,6 @@ server {
     root /var/www/app/public;
 
     location / {
-        # try to serve file directly, fallback to index.php
         try_files $uri /index.php$is_args$args;
     }
 
@@ -19,12 +18,6 @@ server {
     }
 
 
-    # return 404 for all other php files not matching the front controller
-    # this prevents access to other php files you don't want to be accessible.
-    #location ~ \.php$ {
-    #    return 404;
-    #}
-
-    error_log /var/log/nginx/app_error.log;
-    access_log /var/log/nginx/app_access.log;
+    error_log /var/log/nginx/${APP_NAME}_error.log;
+    access_log /var/log/nginx/${APP_NAME}_access.log;
 }
